@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Carousel, Drawer, Button, Tooltip, Modal } from "antd";
+import { Carousel, Drawer, Button, Tooltip, Modal, Badge, Card } from "antd";
 import { Phone, Wifi, Coffee, Zap, Car, ArrowLeft } from "lucide-react";
 import { EyeOutlined } from "@ant-design/icons";
 import FormPageMobile from "../FormPage";
@@ -14,14 +14,13 @@ export default function PropertyDetailsStep({ selectedProperty, onBack }) {
 
   let lastScrollY = 0;
 
-  // Handle scroll for sticky bar
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setShowBookingBar(false); // scrolling down
+        setShowBookingBar(false);
       } else {
-        setShowBookingBar(true); // scrolling up
+        setShowBookingBar(true);
       }
       lastScrollY = currentScrollY;
     };
@@ -48,21 +47,23 @@ export default function PropertyDetailsStep({ selectedProperty, onBack }) {
         <ArrowLeft size={18} /> Back
       </button>
 
-      {/* Carousel */}
-      <div className="property-carousel-wrapper">
-        <Carousel autoplay dots>
-          {selectedProperty.images.map((img, idx) => (
-            <div key={idx} className="carousel-slide">
-              <img
-                src={img}
-                alt={`${selectedProperty.title}-${idx}`}
-                className="carousel-image"
-                onClick={() => openImagePreview(img)}
-              />
-            </div>
-          ))}
-        </Carousel>
-      </div>
+      {/* Badge Ribbon with Carousel */}
+      <Badge.Ribbon text="Fast Filling" color="red">
+        <Card bordered={false} style={{ padding: 0 }}>
+          <Carousel autoplay dots>
+            {selectedProperty.images.map((img, idx) => (
+              <div key={idx} className="carousel-slide">
+                <img
+                  src={img}
+                  alt={`${selectedProperty.title}-${idx}`}
+                  className="carousel-image"
+                  onClick={() => openImagePreview(img)}
+                />
+              </div>
+            ))}
+          </Carousel>
+        </Card>
+      </Badge.Ribbon>
 
       {/* Info Card */}
       <div className="property-info-card">
@@ -81,13 +82,14 @@ export default function PropertyDetailsStep({ selectedProperty, onBack }) {
       {/* Price & Availability */}
       <div className="price-section">
         <div>
+          <strong>AC:</strong> {selectedProperty.ac ? "Yes" : "No"}
+        </div>
+        <div>
           <strong>Rent per Bed:</strong> {selectedProperty.rentAmount}
         </div>
-        <div>
-          <strong>Available Beds:</strong> {selectedProperty.availableBeds}
-        </div>
-        <div>
-          <strong>AC:</strong> {selectedProperty.ac ? "Yes" : "No"}
+        <div className="available-beds">
+          <strong>Available Beds:</strong>{" "}
+          <span className="available-count">{selectedProperty.availableBeds}</span>
         </div>
       </div>
 
@@ -153,22 +155,22 @@ export default function PropertyDetailsStep({ selectedProperty, onBack }) {
         </div>
       </Drawer>
 
-      {/* Drawer for Image Preview */}
-      <Drawer
-        placement="bottom"
-        height="80%"
-        onClose={() => setImagePreviewOpen(false)}
+      {/* Modal for Image Preview */}
+      <Modal
         open={imagePreviewOpen}
-        closable={true}
+        onCancel={() => setImagePreviewOpen(false)}
         footer={null}
-        className="image-preview-drawer"
+        closable={true}
+        centered
+        width="80%"
+        bodyStyle={{ padding: 0, textAlign: "center" }}
       >
         <img
           src={previewImage}
           alt="Preview"
-          style={{ width: "100%", height: "100%", objectFit: "contain" }}
+          style={{ width: "100%", height: "auto", objectFit: "contain" }}
         />
-      </Drawer>
+      </Modal>
 
       {/* Sticky Booking Bar */}
       <div

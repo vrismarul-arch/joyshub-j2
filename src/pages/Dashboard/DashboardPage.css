@@ -1,0 +1,78 @@
+/* Container & card styles */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.dashboard-card {
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Header */
+.dashboard-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Action buttons */
+.dashboard-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* Desktop Table */
+.desktop-table {
+  display: block;
+}
+
+/* Mobile cards */
+.mobile-cards {
+  display: none;
+}
+
+/* Mobile entry cards */
+.mobile-entry-card {
+  border-radius: 12px;
+  margin-bottom: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile card fields */
+.mobile-entry-card h5 {
+  margin-bottom: 8px;
+}
+.mobile-entry-card .field-label {
+  font-weight: 600;
+}
+.mobile-entry-card .field-value {
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+/* Tabs */
+.ant-tabs-tab {
+  font-weight: 500;
+}
+
+/* Profile modal */
+.profile-card {
+  border-radius: 12px;
+  padding: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .desktop-table {
+    display: none !important;
+  }
+  .mobile-cards {
+    display: block !important;
+  }
+}

@@ -7,10 +7,13 @@ import FormPage from "../FormPage";
 import "./Wizard.css";
 
 // Import images
-import bhk2bed from "../../assets/2bhk/2bbeedroom.jpg";
-import bhk2hall from "../../assets/2bhk/2bhall.jpg";
-import bhk2washbasin from "../../assets/2bhk/2bwashbasin.jpg";
-import bhk2balcony from "../../assets/2bhk/2balcony.jpg";
+import tv from "../../assets/2bhk/tv.jpg";
+import kitchen from "../../assets/2bhk/kitchen.jpg";
+import main from "../../assets/2bhk/main.jpg";
+import sofa from "../../assets/2bhk/sofa.jpg";
+import tolet from "../../assets/2bhk/tolet.jpg";
+import dining from "../../assets/2bhk/dining.jpg";
+
 
 
 
@@ -19,8 +22,8 @@ import bhk2balcony from "../../assets/2bhk/2balcony.jpg";
 const propertyOptions = [
   {
     key: "3BHK_SingleRoom",
-    images: [bhk2bed, bhk2hall, bhk2washbasin, bhk2balcony], // you can replace with 3BHK images if available
-    title: "Single Room in 3 BHK Flat",
+    images: [tv, kitchen, main, sofa,tolet,dining], // you can replace with 3BHK images if available
+    title: "Single Sharing Room ",
     description: "Single 2-sharing room in a fully furnished 3 BHK apartment.",
     roomType: "2 sharing",
     ac: true, 

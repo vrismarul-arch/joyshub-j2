@@ -1,20 +1,11 @@
 import { useEffect, useState } from "react";
 import { api } from "../../api/api";
-import {
-  Table,
-  Button,
-  Select,
-  Space,
-  Tabs,
-  Popconfirm,
-  Modal,
-  Card,
-  Typography,
-} from "antd";
+import { Table, Button, Select, Space, Tabs, Modal, Card, Typography } from "antd";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import "./DashboardPage.css";
 
 const { Title, Text } = Typography;
 
@@ -22,25 +13,45 @@ const { Title, Text } = Typography;
 const MobileEntries = ({ entries, handleStatusUpdate, statusUpdating }) => (
   <Space direction="vertical" style={{ width: "100%" }}>
     {entries.map((entry) => (
-      <Card key={entry._id} style={{ borderRadius: 12, marginBottom: 16 }}>
+      <Card key={entry._id} className="mobile-entry-card">
         <Title level={5}>{entry.name}</Title>
-        <Text strong>Email: </Text><Text>{entry.email}</Text><br/>
-        <Text strong>Phone: </Text><Text>{entry.phoneNumber}</Text><br/>
-        <Text strong>Date: </Text><Text>{new Date(entry.dateTime).toLocaleDateString()}</Text><br/>
-        <Text strong>Property Type: </Text><Text>{entry.propertyType}</Text><br/>
-        <Text strong>Urgent: </Text><Text>{entry.urgent ? "Yes" : "No"}</Text><br/>
-        <Text strong>Notes: </Text><Text>{entry.notes || "-"}</Text><br/>
-        <Text strong>Status: </Text>
-        <Select
-          value={entry.status}
-          style={{ width: 120, marginTop: 4 }}
-          onChange={(newStatus) => handleStatusUpdate(entry, newStatus)}
-          disabled={statusUpdating}
-        >
-          <Select.Option value="Pending">Pending</Select.Option>
-          <Select.Option value="Completed">Completed</Select.Option>
-          <Select.Option value="Rejected">Rejected</Select.Option>
-        </Select>
+        <div className="field">
+          <span className="field-label">Email: </span>
+          <span className="field-value">{entry.email}</span>
+        </div>
+        <div className="field">
+          <span className="field-label">Phone: </span>
+          <span className="field-value">{entry.phoneNumber}</span>
+        </div>
+        <div className="field">
+          <span className="field-label">Date: </span>
+          <span className="field-value">{new Date(entry.dateTime).toLocaleDateString()}</span>
+        </div>
+        <div className="field">
+          <span className="field-label">Property Type: </span>
+          <span className="field-value">{entry.propertyType}</span>
+        </div>
+        <div className="field">
+          <span className="field-label">Urgent: </span>
+          <span className="field-value">{entry.urgent ? "Yes" : "No"}</span>
+        </div>
+        <div className="field">
+          <span className="field-label">Notes: </span>
+          <span className="field-value">{entry.notes || "-"}</span>
+        </div>
+        <div className="field">
+          <span className="field-label">Status: </span>
+          <Select
+            value={entry.status}
+            style={{ width: "100%", marginTop: 8 }}
+            onChange={(newStatus) => handleStatusUpdate(entry, newStatus)}
+            disabled={statusUpdating}
+          >
+            <Select.Option value="Pending">Pending</Select.Option>
+            <Select.Option value="Completed">Completed</Select.Option>
+            <Select.Option value="Rejected">Rejected</Select.Option>
+          </Select>
+        </div>
       </Card>
     ))}
   </Space>
@@ -55,7 +66,6 @@ export default function DashboardPage({ onLogout }) {
 
   const navigate = useNavigate();
 
-  // Fetch all entries
   const fetchEntries = async () => {
     setLoading(true);
     try {
@@ -95,10 +105,8 @@ export default function DashboardPage({ onLogout }) {
 
   const fetchProfile = async () => {
     const token = localStorage.getItem("adminToken");
-    if (!token) {
-      toast.error("Not authenticated");
-      return;
-    }
+    if (!token) return toast.error("Not authenticated");
+
     try {
       const response = await api.get("/api/admin/profile", {
         headers: { Authorization: `Bearer ${token}` },
@@ -112,10 +120,7 @@ export default function DashboardPage({ onLogout }) {
   };
 
   const exportToExcel = () => {
-    if (entries.length === 0) {
-      toast.error("No data to export");
-      return;
-    }
+    if (entries.length === 0) return toast.error("No data to export");
 
     const data = entries.map((entry) => ({
       Name: entry.name,
@@ -162,19 +167,13 @@ export default function DashboardPage({ onLogout }) {
     },
   ];
 
-  const statusMap = {
-    Enquiry: "Pending",
-    Proposed: "Completed",
-    "Closed Accounts": "Rejected",
-  };
-
+  const statusMap = { Enquiry: "Pending", Proposed: "Completed", "Closed Accounts": "Rejected" };
   const items = Object.keys(statusMap).map((tabName) => ({
     key: tabName,
     label: `${tabName} (${entries.filter((e) => e.status === statusMap[tabName]).length})`,
     children: (
       <>
-        {/* Desktop Table */}
-        <div className="desktop-table" style={{ display: "block" }}>
+        <div className="desktop-table">
           <Table
             dataSource={entries.filter((e) => e.status === statusMap[tabName])}
             columns={columns}
@@ -185,9 +184,7 @@ export default function DashboardPage({ onLogout }) {
             scroll={{ x: "max-content" }}
           />
         </div>
-
-        {/* Mobile Cards */}
-        <div className="mobile-cards" style={{ display: "none" }}>
+        <div className="mobile-cards">
           <MobileEntries
             entries={entries.filter((e) => e.status === statusMap[tabName])}
             handleStatusUpdate={handleStatusUpdate}
@@ -199,17 +196,15 @@ export default function DashboardPage({ onLogout }) {
   }));
 
   return (
-    <div style={{ maxWidth: 1200, margin: "20px auto", padding: "20px" }}>
-      <Card style={{ borderRadius: 12, boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}>
+    <div className="dashboard-container">
+      <Card className="dashboard-card">
         <Space direction="vertical" style={{ width: "100%" }} size="large">
-          <Title level={2} style={{ textAlign: "center" }}>Admin Dashboard</Title>
-
-          <Space style={{ justifyContent: "center", width: "100%" }} wrap>
+          <Title level={2} className="dashboard-title">Admin Dashboard</Title>
+          <div className="dashboard-actions">
             <Button type="primary" onClick={fetchProfile}>View Profile</Button>
             <Button type="default" onClick={exportToExcel}>Export to Excel</Button>
             <Button type="primary" danger onClick={handleLogout}>Logout</Button>
-          </Space>
-
+          </div>
           <Tabs defaultActiveKey="Enquiry" items={items} />
         </Space>
       </Card>
@@ -218,29 +213,15 @@ export default function DashboardPage({ onLogout }) {
         visible={profileVisible}
         title="Admin Profile"
         onCancel={() => setProfileVisible(false)}
-        footer={[
-          <Button key="close" onClick={() => setProfileVisible(false)}>Close</Button>,
-        ]}
+        footer={[<Button key="close" onClick={() => setProfileVisible(false)}>Close</Button>]}
       >
         {profile ? (
-          <Card style={{ borderRadius: 12 }}>
+          <Card className="profile-card">
             <Text strong>Name: </Text><Text>{profile.name}</Text><br/>
             <Text strong>Email: </Text><Text>{profile.email}</Text>
           </Card>
-        ) : (
-          <p>Loading...</p>
-        )}
+        ) : <p>Loading...</p>}
       </Modal>
-
-      {/* Responsive CSS */}
-      <style>
-        {`
-          @media (max-width: 768px) {
-            .desktop-table { display: none !important; }
-            .mobile-cards { display: block !important; }
-          }
-        `}
-      </style>
     </div>
   );
 }

@@ -30,6 +30,7 @@
   cursor: pointer;
   z-index: 20;
 }
+
 .back-btn:hover {
   background: rgba(245, 245, 245, 0.95);
 }
@@ -40,6 +41,7 @@
   border-radius: 16px;
   overflow: hidden;
 }
+
 .carousel-slide {
   width: 100%;
   height: 300px;
@@ -48,6 +50,7 @@
   justify-content: center;
   background: #ffffff00;
 }
+
 .carousel-image {
   width: 100%;
   height: 100%;
@@ -65,12 +68,14 @@
   justify-content: space-between;
   padding: 0.5rem 1rem;
 }
+
 .property-title {
   font-size: 18px;
   font-weight: 700;
   color: #1e293b;
   margin: 0;
 }
+
 .view-icon-btn {
   display: flex;
   align-items: center;
@@ -95,8 +100,10 @@
   border-top: 1px solid #e2e8f0;
   padding-top: 0.8rem;
   font-size: 1rem;
+  flex-direction: column;
   color: #1e293b;
 }
+
 .price-section strong {
   color: #4d6e5b;
 }
@@ -108,12 +115,14 @@
   gap: 1.2rem;
   padding: 1rem;
 }
+
 .details-drawer .quick-highlights {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
   justify-content: center;
 }
+
 .details-drawer .highlight-item {
   display: flex;
   align-items: center;
@@ -129,16 +138,19 @@
 .amenities-section {
   margin-top: 1rem;
 }
+
 .amenities-section h4 {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
+
 .amenities-section ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 .amenities-section li {
   display: flex;
   align-items: center;
@@ -176,6 +188,7 @@
   z-index: 50;
   gap: 1rem;
 }
+
 .call-btn,
 .book-now-btn {
   flex: 1;
@@ -190,22 +203,27 @@
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 }
+
 .call-btn {
   color: #0f172a;
   background: #f1f5f9;
   border: 1px solid #e2e8f0;
 }
+
 .call-btn:hover {
   background: #e2e8f0;
 }
+
 .book-now-btn {
   color: #fff;
   background: linear-gradient(90deg, #4d6e5b, #4d6e5b);
   border: none;
 }
+
 .book-now-btn:hover {
   transform: translateY(-1px);
 }
+
 .airbnb-logo {
   width: 20px;
   height: 20px;
@@ -217,6 +235,7 @@
     flex-direction: row;
     gap: 0.8rem;
   }
+
   .call-btn,
   .book-now-btn {
     width: 100%;
@@ -229,16 +248,19 @@
 :where(.css-dev-only-do-not-override-xepvsj).ant-card .ant-card-body {
   padding: 0px;
 }
+
 /* Amenities Section */
 .amenities-section {
   margin-top: 1rem;
 }
+
 .amenities-section h4 {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: #1e293b;
 }
+
 .amenities-section ul {
   list-style: none;
   padding: 0;
@@ -247,6 +269,7 @@
   flex-wrap: wrap;
   gap: 0.6rem;
 }
+
 .amenities-section li {
   display: flex;
   align-items: center;
@@ -259,13 +282,15 @@
   font-weight: 500;
   transition: all 0.2s ease-in-out;
 }
+
 .amenities-section li:hover {
   background: #d1fae5;
 }
 
 /* Icon styling */
 .amenities-section li svg {
-  color: #10b981; /* green icons for amenities */
+  color: #10b981;
+  /* green icons for amenities */
   flex-shrink: 0;
 }
 
@@ -274,12 +299,42 @@
   .amenities-section ul {
     gap: 0.4rem;
   }
+
   .amenities-section li {
     padding: 5px 10px;
     font-size: 0.85rem;
   }
+
   .amenities-section li svg {
     width: 14px;
     height: 14px;
   }
+}
+
+:where(.css-dev-only-do-not-override-xepvsj).ant-modal .ant-modal-content{
+  padding: 1px ;
+  background-color: #0f172a00;
+}.fast-filling-ribbon {
+  position: absolute;
+  top: 10px;
+  right: -30px;
+  background: #ff4d4f;
+  color: white;
+  padding: 5px 40px;
+  font-weight: bold;
+  font-size: 12px;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+.available-beds {
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+.available-count {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff4d4f; /* red color to highlight */
+  margin-left: 5px;
 }

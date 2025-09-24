@@ -1,0 +1,113 @@
+:root {
+  --color-primary: #1890ff;
+  --color-primary-light: #e6f7ff;
+  --color-danger: #ff4d4f;
+  --color-text-dark: #222;
+  --color-text-light: #666;
+  --color-border: #d9d9d9;
+  --box-shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --box-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --border-radius-large: 12px;
+  --spacing-1: 8px;
+  --spacing-2: 16px;
+  --spacing-3: 24px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: var(--color-text-dark);
+}
+
+.property-step {
+  padding: var(--spacing-1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.property-nav {
+  margin-bottom: var(--spacing-3);
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  cursor: pointer;
+  padding: var(--spacing-1);
+  transition: color 0.2s ease;
+}
+
+.nav-btn:hover {
+  color: var(--color-primary);
+}
+
+.property-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-3);
+}
+
+.property-card {
+  background-color: #fff;
+  border-radius: var(--border-radius-large);
+  padding: 5px;
+  box-shadow: var(--box-shadow-subtle);
+  border: 2px solid var(--color-border);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.property-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
+  border-color: var(--color-primary);
+}
+
+.property-card.selected {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  box-shadow: var(--box-shadow-hover);
+}
+
+
+
+.property-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--color-text-dark);
+}
+
+.property-desc {
+  font-size: 14px;
+  color: var(--color-text-light);
+  line-height: 1.4;
+}
+
+.price-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.regular-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.peak-price {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-danger);
+}

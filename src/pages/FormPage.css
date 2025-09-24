@@ -1,74 +1,27 @@
-.form-container {
+.mobile-form-container {
   display: flex;
   justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  background: #f5f5f5; /* light gray background for contrast */
 }
 
-/* White Card */
-.glass-card {
+.glass-card-mobile {
   width: 100%;
-  max-width: 500px;
-  background: #ffffff !important; /* pure white background */
-  border-radius: 12px !important;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
+  max-width: 400px;
+  border-radius: 16px;
 }
 
-/* Form */
-.glass-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.form-title-mobile {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 16px;
+  font-weight: 600;
 }
 
-.form-row {
-  display: flex;
-  gap: 1rem;
+.glass-form-mobile .ant-form-item {
+  margin-bottom: 12px;
 }
 
-.form-row > .ant-form-item {
-  flex: 1;
-}
-
-/* Inputs */
-.ant-input,
-.ant-picker,
-.ant-input-affix-wrapper {
-  background: #ffffff !important;
-  border: 1px solid #d9d9d9 !important;
-  border-radius: 8px;
-  color: #333 !important;
-}
-
-.ant-input::placeholder,
-.ant-picker-input input::placeholder {
-  color: #888 !important;
-}
-
-.ant-input,
-.ant-picker-input input {
-  color: #333 !important;
-}
-
-/* Button */
-.ant-btn-primary {
-  background: #1677ff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
+.ant-btn {
+  border-radius: 10px;
   font-weight: 500;
-}
-
-.ant-btn-primary:hover {
-  background: #125fcc;
-}
-
-/* Mobile responsive */
-@media (max-width: 600px) {
-  .form-row {
-    flex-direction: column;
-  }
 }

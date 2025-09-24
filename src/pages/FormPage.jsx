@@ -1,113 +1,148 @@
-import { useState } from "react";
-import { Form, Input, DatePicker, TimePicker, Button, Card } from "antd";
-import toast, { Toaster } from "react-hot-toast"; // ✅ Hot Toast
-import { api } from "../api/api";
-import "./FormPage.css"; // Custom styling
+  import { useState } from "react";
+  import { Form, Input, DatePicker, Button, Select, Card } from "antd";
+  import { api } from "../api/api";
+  import "./FormPage.css";
+  import NotificationCard from "../components/NotificationCard";
 
-export default function FormPage() {
-  const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false);
+  export default function FormPageMobile({ onSuccess }) {
+    const [form] = Form.useForm();
+    const [loading, setLoading] = useState(false);
+    const [notification, setNotification] = useState(null);
 
-  const onFinish = async (values) => {
-    setLoading(true);
-    try {
-      const date = values.date.format("YYYY-MM-DD");
-      const time = values.time.format("hh:mm A");
-      const dateTime = `${date}T${values.time.format("HH:mm")}`;
+    const onFinish = async (values) => {
+      setLoading(true);
+      try {
+        const payload = {
+          name: values.name,
+          email: values.email,
+          phoneNumber: values.phoneNumber,
+          dateTime: values.dateTime.startOf('day').toISOString(), // store date only
+          propertyType: values.propertyType,
+          urgent: values.urgent,
+          notes: values.notes || "",
+        };
 
-      const payload = {
-        name: values.name,
-        email: values.email,
-        phoneNumber: values.phoneNumber,
-        dateTime,
-      };
+        const response = await api.post("/api/entries/add", payload);
+        form.resetFields();
 
-      const response = await api.post("/api/entries/add", payload);
+        setNotification({
+          status: "success",
+          title: "Booking Successful!",
+          message: response.data.message,
+          buttonText: "OK",
+          onClick: () => {
+            setNotification(null);
+            if (onSuccess) onSuccess();
+          },
+        });
+      } catch (error) {
+        console.error(error);
+        setNotification({
+          status: "error",
+          title: "Booking Failed",
+          message: "Please try again later.",
+          buttonText: "Retry",
+          onClick: () => setNotification(null),
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      // ✅ Success message
-      toast.success(
-        response.data.message ||
-          "✅ Your form has been submitted. Our team will contact you soon. Thank you!",
-        { duration: 5000 } // stays 5 seconds
-      );
+    if (notification) return <NotificationCard {...notification} />;
 
-      form.resetFields();
-    } catch (error) {
-      console.error("Error submitting entry:", error);
-      toast.error("❌ Failed to submit entry. Please try again.", {
-        duration: 5000,
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="form-container">
-      <Toaster position="top-right" reverseOrder={false} /> {/* ✅ Toast UI */}
-      <Card className="glass-card" title="Book an Appointment">
-        <Form
-          form={form}
-          layout="vertical"
-          onFinish={onFinish}
-          className="glass-form"
-        >
-          <div className="form-row">
+    return (
+      <div className="mobile-form-container">
+        <Card className="glass-card-mobile">
+          <h2 className="form-title-mobile">Plan Your Stay with Zenova</h2>
+          <p>Tell us your preferred date, and our team will confirm availability</p>
+          <Form
+            form={form}
+            layout="vertical"
+            onFinish={onFinish}
+            className="glass-form-mobile"
+          >
+            {/* Name */}
             <Form.Item
               label="Name"
               name="name"
-              rules={[{ required: true, message: "Please enter your name" }]}
+              rules={[{ required: true, message: "Enter your name" }]}
             >
-              <Input placeholder="Enter your name" />
+              <Input placeholder="Your full name" />
             </Form.Item>
 
+            {/* Email */}
             <Form.Item
               label="Email"
               name="email"
-              rules={[
-                { required: true, message: "Please enter your email" },
-                { type: "email", message: "Please enter a valid email" },
-              ]}
+              rules={[{ type: "email", message: "Enter a valid email" }]}
             >
-              <Input placeholder="Enter your email" />
+              <Input placeholder="Your email address" />
             </Form.Item>
-          </div>
 
-          <div className="form-row">
+            {/* Phone */}
             <Form.Item
               label="Phone Number"
               name="phoneNumber"
-              rules={[
-                { required: true, message: "Please enter your phone number" },
-              ]}
+              rules={[{ required: true, message: "Enter phone number" }]}
             >
-              <Input placeholder="Enter your phone number" />
+              <Input placeholder="10-digit phone number" />
             </Form.Item>
 
+            {/* Date only */}
             <Form.Item
               label="Date"
-              name="date"
-              rules={[{ required: true, message: "Please select the date" }]}
+              name="dateTime"
+              rules={[{ required: true, message: "Select a date" }]}
             >
               <DatePicker style={{ width: "100%" }} />
             </Form.Item>
-          </div>
 
-          <Form.Item
-            label="Time"
-            name="time"
-            rules={[{ required: true, message: "Please select the time" }]}
-          >
-            <TimePicker style={{ width: "100%" }} format="h:mm A" use12Hours />
-          </Form.Item>
+            {/* Property Type */}
+            <Form.Item
+              label="Property Type"
+              name="propertyType"
+              rules={[{ required: true, message: "Select property type" }]}
+            >
+              <Select placeholder="Select sharing type">
+                <Select.Option value="1single sharing">1 Single Sharing</Select.Option>
+                <Select.Option value="2sharing">2 Sharing</Select.Option>
+                <Select.Option value="3sharing">3 Sharing</Select.Option>
+                <Select.Option value="4sharing">4 Sharing</Select.Option>
+              </Select>
+            </Form.Item>
 
-          <Form.Item>
-            <Button type="primary" htmlType="submit" block loading={loading}>
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
-      </Card>
-    </div>
-  );
-}
+            {/* Urgent Booking */}
+            <Form.Item
+              label="Urgent Booking"
+              name="urgent"
+              initialValue={false}
+            >
+              <Select>
+                <Select.Option value={true}>Yes, urgent</Select.Option>
+                <Select.Option value={false}>No, normal</Select.Option>
+              </Select>
+            </Form.Item>
+
+            {/* Notes */}
+            <Form.Item label="Notes" name="notes">
+              <Input.TextArea rows={3} placeholder="Additional notes (optional)" />
+            </Form.Item>
+
+            {/* Submit */}
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                block
+                size="large"
+                loading={loading}
+              > 
+                Submit Booking
+              </Button>
+            </Form.Item>
+          </Form>
+        </Card>
+      </div>
+    );
+  }

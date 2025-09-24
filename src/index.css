@@ -4,3 +4,6 @@ body {
   line-height: 1.5;      /* improves readability */
   color: #1a1a1a;        /* default text color */
 }
+:where(.css-dev-only-do-not-override-xepvsj).ant-card .ant-card-body {
+  background-color: rgba(240, 248, 255, 0) !important;
+}

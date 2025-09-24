@@ -1,24 +1,26 @@
-import React from 'react'
-import Navbar from '../../components/Navbar'
-import FormPage from "../FormPage";
-import Hero from './hero/Hero';
-import WhyChooseUs from './whychoose/WhyChooseUs';
-import Curentproject from '../residence/curentproject';
-import RealEstateSection from './residencevedio/RealEstateSection';
-import FacilitiesData from '../facility/FacilitiesData';
-import Footer from '../../components/Footer';
+import React from "react";
+import { Helmet } from "react-helmet";
+import WizardForm from "../form/WizardForm";
+import Navbar from "../../components/Navbar";
+
 const Home = () => {
   return (
     <>
-      <Navbar />
-      <Hero />
-      <WhyChooseUs />
-      <Curentproject />
-      <RealEstateSection />
-      <FacilitiesData />
-      <Footer />
-    </>
-  )
-}
+      <Helmet>
+        <title>Serviced Apartments & Premium Rentals | Zenova Stays Porur</title>
+        <meta
+          name="description"
+          content="Discover serviced apartments and premium rentals at Zenova Stays Porur. Comfortable stays in Chennai with low prices, modern rooms, and easy booking."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Helmet>
 
-export default Home
+      <Navbar />
+      <WizardForm style={{ marginTop: "60px" }} />
+      {/* <Footer /> */}
+    </>
+  );
+};
+
+export default Home;

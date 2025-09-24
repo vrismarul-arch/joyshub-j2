@@ -4,9 +4,7 @@ import {
   FaPhoneAlt,
   FaEnvelope,
   FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
+  FaInstagram, FaYoutube,
 } from "react-icons/fa";
 import "./Footer.css";
 
@@ -16,11 +14,8 @@ const Footer = () => {
       <div className="footer-container">
         {/* Column 1: Logo + About */}
         <div className="footer-section">
-<img src="/logo.png" alt="ZenZones Props Logo" className="footer-logo" />
-          <p className="footer-about">
-            Helping people find their dream homes with trust, transparency, and
-            ease. Your next property is just a step away.
-          </p>
+          <img src="/logo.png" alt="ZenZones Props Logo" className="footer-logo" />
+          
         </div>
 
         {/* Column 2: Contact */}
@@ -28,37 +23,50 @@ const Footer = () => {
           <h3>Contact</h3>
           <ul>
             <li>
-              <FaMapMarkerAlt className="footer-icon" />
-              Phase I, GREETA Towers, Perungudi, Chennai - 600096
+            
+              No-1, Ramamoorthy Avenue, 2nd Main Road, Kolapakkam, Chennai - 600116
             </li>
-            <li>
-              <FaPhoneAlt className="footer-icon" /> +91 90420 76573
-            </li>
-            <li>
-              <FaEnvelope className="footer-icon" />
-              <a href="mailto:admin@zenzonesprops.com">
-                admin@zenzonesprops.com
-              </a>
-            </li>
+           
+
           </ul>
         </div>
 
-    
-
-        {/* Column 4: Socials */}
+        {/* Column 3: Socials */}
         <div className="footer-section">
           <h3>Follow Us</h3>
           <div className="footer-socials">
-            <a href="#"><FaFacebookF /></a>
-          
-              <a href="#"><FaInstagram /></a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61576938355118"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebookF />
+            </a>
+
+            <a
+              href="https://www.instagram.com/zenovastays/?utm_source=ig_web_button_share_sheet"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram />
+            </a>
+
+            <a
+              href="https://youtube.com/@zenovastays?si=g6RJfh8bMFDpBiNK"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaYoutube />
+            </a>
+
+
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
       <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} ZenZones Props. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} zenovastays. All rights reserved.</p>
       </div>
     </footer>
   );

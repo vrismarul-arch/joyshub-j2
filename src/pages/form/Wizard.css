@@ -1,0 +1,101 @@
+.wizard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+  padding: 1.2rem;
+  min-height: 100vh;
+}
+
+/* Step dots (mobile-friendly onboarding style) */
+.step-dots {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: #3c3c3c;
+  width: 22px;
+  border-radius: 12px;
+}
+
+/* Card container */
+.wizard-card {
+  background-color: #ffffff00;
+
+  width: 100%;
+  max-width: 680px;
+  animation: fadeIn 0.4s ease;
+}
+
+.wizard-card h2 {
+  font-size: 22px;
+  text-align: center;
+  color: #222;
+  font-weight: bold;
+  font-weight: 600;
+}
+.step-description {
+  font-size: 14px;
+  font-weight: 700;
+  color: #555;  text-align: center;
+
+  margin-top: 8px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile focus */
+@media (max-width: 480px) {
+  .wizard-container {
+    padding: 0.8rem;
+    background: #ffffff00;
+  }
+
+  .wizard-card {
+      border-radius: 14px;
+  }
+
+  .wizard-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+
+.wizard-card h2 {
+  font-size: 18px;
+  text-align: center;
+  
+  color: #222;
+  font-weight: bold;
+  font-weight: 600;
+}
+.step-description {
+  font-size: 14px;
+  font-weight: 700;
+  color: #555;  text-align: center;
+
+  margin-top: 8px;
+}
+
+  .dot.active {
+    width: 16px;
+  }
+}

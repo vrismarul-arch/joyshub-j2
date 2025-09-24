@@ -1,0 +1,111 @@
+.yesno-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 100vh;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+/* Illustration */
+.yesno-illustration img {
+  width: 280px;
+  max-width: 90%;
+  margin-top: 40px;
+}
+
+/* Title and description */
+.yesno-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #1b4332;
+}
+
+.yesno-desc {
+  font-size: 15px;
+  margin: 10px 0 30px;
+  color: #333;
+  line-height: 1.4;
+  max-width: 300px;
+}
+
+/* Button group */
+.yesno-button-group {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
+.yesno-btn {
+  flex: 1 1 45%; /* flexible width, min 45% */
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: 2px solid #1b4332;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.yes-btn {
+  background: #1b4332;
+  color: #fff;
+}
+
+.no-btn {
+  background: #fff;
+  color: #1b4332;
+}
+
+.yesno-btn.active {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Dots */
+.yesno-dots {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #cfd8dc;
+  border-radius: 50%;
+}
+
+.dot.active {
+  background: #1b4332;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 480px) {
+  .yesno-button-group {
+    flex-direction: column; /* stack buttons vertically */
+    gap: 12px;
+  }
+
+  .yesno-btn {
+    width: 100%;
+    flex: none; /* override flex-basis */
+  }
+
+  .yesno-illustration img {
+    width: 220px;
+  }
+
+  .yesno-title {
+    font-size: 18px;
+  }
+
+  .yesno-desc {
+    font-size: 14px;
+    max-width: 90%;
+  }
+}

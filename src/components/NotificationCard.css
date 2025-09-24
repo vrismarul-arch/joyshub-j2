@@ -1,0 +1,33 @@
+.notif-modal .ant-modal-content {
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  min-height: auto; /* 👈 ensures no unnecessary height */
+}
+
+.notif-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.notif-icon {
+  font-size: 26px;
+}
+
+.notif-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.notif-message {
+  margin: 12px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.notif-footer {
+  margin-top: 8px;
+}

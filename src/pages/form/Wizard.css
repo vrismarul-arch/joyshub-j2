@@ -62,7 +62,7 @@
 /* Mobile focus */
 @media (max-width: 480px) {
   .wizard-container {
-    padding: 0.8rem;
+    padding: 0rem;
     background: #ffffff00;
   }
 

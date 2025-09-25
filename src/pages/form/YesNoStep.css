@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
   min-height: 100vh;
   text-align: center;
   box-sizing: border-box;
@@ -13,7 +12,6 @@
 .yesno-illustration img {
   width: 280px;
   max-width: 90%;
-  margin-top: 40px;
 }
 
 /* Title and description */

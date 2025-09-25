@@ -35,18 +35,19 @@ export default function YesNoStep({ onSelect, onNoClick, selected }) {
 
       {/* Buttons */}
       <div className="yesno-button-group">
+           <button
+          className={`yesno-btn yes-btn ${selected === "YES" ? "active" : ""}`}
+          onClick={handleYes}
+        >
+          Yes, Book Now
+        </button>
         <button
           className={`yesno-btn no-btn ${selected === "NO" ? "active" : ""}`}
           onClick={handleNo}
         >
           No, Plan Later
         </button>
-        <button
-          className={`yesno-btn yes-btn ${selected === "YES" ? "active" : ""}`}
-          onClick={handleYes}
-        >
-          Yes, Book Now
-        </button>
+     
       </div>
 
       

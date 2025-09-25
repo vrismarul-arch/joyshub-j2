@@ -81,16 +81,37 @@ export default function PropertyDetailsStep({ selectedProperty, onBack }) {
 
       {/* Price & Availability */}
       <div className="price-section">
+        <div
+  className="available-beds"
+  style={{
+    marginTop: "8px",
+    fontSize: "16px",
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+  }}
+>
+  <strong style={{ color: "#4d6e5b", fontWeight: 600 }}>Available Beds:</strong>
+  <span
+    className="available-count"
+    style={{
+      fontSize: "24px",
+      fontWeight: "bold",
+      color: "#ff4d4f", // red highlight
+      marginLeft: "5px",
+    }}
+  >
+    {selectedProperty.availableBeds}
+  </span>
+</div>
+
         <div>
           <strong>AC:</strong> {selectedProperty.ac ? "Yes" : "No"}
         </div>
         <div>
           <strong>Rent per Bed:</strong> {selectedProperty.rentAmount}
         </div>
-        <div className="available-beds">
-          <strong>Available Beds:</strong>{" "}
-          <span className="available-count">{selectedProperty.availableBeds}</span>
-        </div>
+        
       </div>
 
       {/* Drawer for Property Details */}
